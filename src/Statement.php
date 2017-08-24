@@ -93,7 +93,7 @@ class Statement
 
         $this->result = json_decode($data);
         foreach (self::JSON_RESPONSE_POSSIBLE_KEYS as $possibleKey) {
-            if (property_exists($this->result, $possibleKey)) {
+            if (is_object($this->result) && property_exists($this->result, $possibleKey)) {
                 $this->{$possibleKey} = $this->result->{$possibleKey};
             }
         }
